@@ -1,112 +1,203 @@
-const answers = {
-  1:'C',2:'B',3:'A',4:'B',5:'B',6:'A',7:'A',8:'C',9:'D',10:'A',
-  11:'D',12:'B',13:'C',14:'A',15:'A',16:'C',17:'A',18:'A',19:'D',20:'A'
-};
-
-const textAnswers = {
-  21:'100',22:'=E$6',23:'4-3-2-1-',24:'0',25:'start, stop',
-  26:'Ctrl+C',27:'def',28:'False',29:'.gif',30:'2006'
-};
-
-const points = {1:0.9,2:0.9,3:0.9,4:0.9,5:0.9,6:0.9,7:0.9,8:0.9,9:0.9,10:0.9,
-  11:1.5,12:1.5,13:1.5,14:1.5,15:1.5,16:1.5,17:1.5,18:1.5,19:1.5,20:1.5,
-  21:2.6,22:2.6,23:2.6,24:2.6,25:2.6,26:2.6,27:2.6,28:2.6,29:2.6,30:2.6};
-
+let currentGrade = null;
+let quizConfig = null;
 const userAnswers = {};
-const totalQ = 30;
+
+function initQuiz() {
+  const params = new URLSearchParams(window.location.search);
+  currentGrade = parseInt(params.get('grade'));
+  if (!currentGrade || !QUIZ_DATA[currentGrade]) {
+    window.location.href = '/';
+    return;
+  }
+  quizConfig = QUIZ_DATA[currentGrade];
+  document.getElementById('quiz-title').textContent = quizConfig.title + ' — Olimpiada';
+  document.getElementById('grade-badge').textContent = quizConfig.title;
+  document.getElementById('max-score').textContent = quizConfig.maxScore.toFixed(1);
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  let html = '';
+
+  quizConfig.sections.forEach(sec => {
+    html += `<div class="section-header">
+      <span class="section-num s${sec.num}">${sec.num}</span>
+      <h2>${sec.num}-QISM: ${sec.name}</h2>
+      <span class="pts">${sec.pts} ball / savol</span>
+    </div>`;
+
+    const qs = quizConfig.questions.filter(q => q.section === sec.num);
+    qs.forEach(q => {
+      html += renderQuestion(q);
+    });
+  });
+
+  html += `<div class="submit-section">
+    <button class="btn btn-primary" id="check-btn" disabled onclick="checkAll()" style="max-width:400px;margin:0 auto">
+      Natijani tekshirish
+    </button>
+  </div>
+  <div id="result-section">
+    <h2>Olimpiada natijalari</h2>
+    <p class="subtitle">Barcha savollar baholandi</p>
+    <div class="big-score" id="final-score">0 / ${quizConfig.maxScore.toFixed(1)}</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="score-detail">
+      <div class="item"><div class="val" id="r-correct" style="color:var(--success)">0</div><div class="lbl">To'g'ri</div></div>
+      <div class="item"><div class="val" id="r-wrong" style="color:var(--danger)">0</div><div class="lbl">Noto'g'ri</div></div>
+      <div class="item"><div class="val" id="r-percent" style="color:var(--primary)">0%</div><div class="lbl">Foiz</div></div>
+    </div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>`;
+
+  container.innerHTML = html;
+}
+
+function renderQuestion(q) {
+  const cls = q.section === 1 ? 's1' : q.section === 2 ? 's2' : 's3';
+  let html = `<div class="question-card" id="q${q.id}">
+    <div class="q-header">
+      <span class="q-num ${cls}">${q.id}</span>
+      <div class="q-text">${escHtml(q.text)}</div>
+    </div>`;
+
+  if (q.code) {
+    html += `<div class="code-block">${escHtml(q.code)}</div>`;
+  }
+
+  if (q.type === 'choice') {
+    html += `<div class="options">`;
+    q.options.forEach(o => {
+      html += `<label class="option" data-q="${q.id}" data-val="${o.l}" onclick="sel(this)">
+        <span class="option-letter">${o.l}</span> ${escHtml(o.t)}
+      </label>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="text-input-area">
+      <input type="text" class="text-answer" data-q="${q.id}" data-answer="${escAttr(q.answer)}" placeholder="Javobni kiriting..." oninput="onTextinput(this)">
+    </div>`;
+  }
+
+  html += `<div class="comment" id="comment-${q.id}">${escHtml(q.comment)}</div>`;
+  html += `</div>`;
+  return html;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;').replace(/\n/g,'<br>');
+}
+
+function escAttr(s) {
+  return s.replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
 
 function sel(el) {
   const q = el.getAttribute('data-q');
-  document.querySelectorAll('[data-q="'+q+'"]').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll(`[data-q="${q}"]`).forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   userAnswers[q] = el.getAttribute('data-val');
   checkReady();
 }
 
-document.querySelectorAll('.text-answer').forEach(inp => {
-  inp.addEventListener('input', function() {
-    userAnswers[this.getAttribute('data-q')] = this.value.trim();
-    checkReady();
-  });
-});
+function onTextinput(el) {
+  userAnswers[el.getAttribute('data-q')] = el.value.trim();
+  checkReady();
+}
 
 function checkReady() {
-  document.getElementById('check-btn').disabled = Object.keys(userAnswers).length < totalQ;
+  const total = quizConfig.questions.length;
+  document.getElementById('check-btn').disabled = Object.keys(userAnswers).length < total;
 }
 
 function norm(s) { return s.replace(/\s+/g,' ').trim().toLowerCase(); }
 
 function checkAll() {
-  let score=0, correct=0, wrong=0;
+  let score = 0, correct = 0, wrong = 0;
 
-  for (let i=1;i<=20;i++) {
-    const card=document.getElementById('q'+i);
-    const ua=userAnswers[i]||'';
-    const ca=answers[i];
-    document.querySelectorAll('[data-q="'+i+'"]').forEach(o=>{
-      o.classList.add('disabled');
-      const v=o.getAttribute('data-val');
-      if(v===ca) o.classList.add('correct');
-      if(v===ua && v!==ca) o.classList.add('wrong');
-    });
-    if(ua===ca){card.classList.add('answered-correct');score+=points[i];correct++;}
-    else{card.classList.add('answered-wrong');wrong++;}
-    document.getElementById('comment-'+i).classList.add('show');
-  }
+  quizConfig.questions.forEach(q => {
+    const card = document.getElementById('q' + q.id);
+    const ua = userAnswers[q.id] || '';
 
-  for (let i=21;i<=30;i++) {
-    const card=document.getElementById('q'+i);
-    const inp=document.querySelector('[data-q="'+i+'"].text-answer');
-    const ua=userAnswers[i]||'';
-    const ca=textAnswers[i];
-    inp.disabled=true;
-    if(norm(ua)===norm(ca)){
-      inp.classList.add('correct-input');card.classList.add('answered-correct');
-      score+=points[i];correct++;
-    }else{
-      inp.classList.add('wrong-input');card.classList.add('answered-wrong');wrong++;
+    if (q.type === 'choice') {
+      document.querySelectorAll(`[data-q="${q.id}"]`).forEach(o => {
+        o.classList.add('disabled');
+        const v = o.getAttribute('data-val');
+        if (v === q.answer) o.classList.add('correct');
+        if (v === ua && v !== q.answer) o.classList.add('wrong');
+      });
+      if (ua === q.answer) {
+        card.classList.add('answered-correct');
+        score += q.pts;
+        correct++;
+      } else {
+        card.classList.add('answered-wrong');
+        wrong++;
+      }
+    } else {
+      const inp = document.querySelector(`[data-q="${q.id}"].text-answer`);
+      inp.disabled = true;
+      if (norm(ua) === norm(q.answer)) {
+        inp.classList.add('correct-input');
+        card.classList.add('answered-correct');
+        score += q.pts;
+        correct++;
+      } else {
+        inp.classList.add('wrong-input');
+        card.classList.add('answered-wrong');
+        wrong++;
+      }
     }
-    document.getElementById('comment-'+i).classList.add('show');
-  }
+    document.getElementById('comment-' + q.id).classList.add('show');
+  });
 
-  const totalMax = 50.0;
-  document.getElementById('check-btn').style.display='none';
+  score = Math.round(score * 10) / 10;
 
-  const rs=document.getElementById('result-section');
-  rs.style.display='block';
-  document.getElementById('final-score').textContent=score.toFixed(1)+' / '+totalMax.toFixed(1);
-  document.getElementById('r-correct').textContent=correct;
-  document.getElementById('r-wrong').textContent=wrong;
-  const pct=((score/totalMax)*100).toFixed(0);
-  document.getElementById('r-percent').textContent=pct+'%';
-  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('check-btn').style.display = 'none';
+  const rs = document.getElementById('result-section');
+  rs.style.display = 'block';
+  document.getElementById('final-score').textContent = score.toFixed(1) + ' / ' + quizConfig.maxScore.toFixed(1);
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = wrong;
+  const pct = ((score / quizConfig.maxScore) * 100).toFixed(0);
+  document.getElementById('r-percent').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
 
-  let msg='';
-  if(pct>=90) msg='Ajoyib natija! Siz haqiqiy chempionsiz!';
-  else if(pct>=70) msg='Yaxshi natija! Davom eting!';
-  else if(pct>=50) msg="O'rtacha natija. Ko'proq mashq qiling!";
-  else msg="Ko'proq o'rganing va qayta urinib ko'ring!";
-  document.getElementById('result-msg').textContent=msg;
+  let msg = '';
+  if (pct >= 90) msg = 'Ajoyib natija! Siz haqiqiy chempionsiz!';
+  else if (pct >= 70) msg = 'Yaxshi natija! Davom eting!';
+  else if (pct >= 50) msg = "O'rtacha natija. Ko'proq mashq qiling!";
+  else msg = "Ko'proq o'rganing va qayta urinib ko'ring!";
+  document.getElementById('result-msg').textContent = msg;
+  rs.scrollIntoView({ behavior: 'smooth' });
 
-  rs.scrollIntoView({behavior:'smooth'});
+  const user = getUser();
+  if (user) {
+    const parts = { 1: [1, 10], 2: [11, 20], 3: [21, 30] };
+    const partScores = {};
+    for (const sec of quizConfig.sections) {
+      let ps = 0;
+      quizConfig.questions.filter(q => q.section === sec.num).forEach(q => {
+        const ua = userAnswers[q.id] || '';
+        if (q.type === 'choice') {
+          if (ua === q.answer) ps += q.pts;
+        } else {
+          if (norm(ua) === norm(q.answer)) ps += q.pts;
+        }
+      });
+      partScores['part' + sec.num] = Math.round(ps * 10) / 10;
+    }
 
-  const user=getUser();
-  if(user){
-    const part1score=calcPartScore(1,10,answers);
-    const part2score=calcPartScore(11,20,answers);
-    const part3score=calcPartScore(21,30,textAnswers);
-    apiPost('/api/scores',{
-      part1:part1score,part2:part2score,part3:part3score,total:score,answers:userAnswers
+    apiPost('/api/scores', {
+      grade: currentGrade,
+      part1: partScores.part1 || 0,
+      part2: partScores.part2 || 0,
+      part3: partScores.part3 || 0,
+      total: score,
+      answers: userAnswers
     });
   }
 }
 
-function calcPartScore(start,end,ansMap){
-  let s=0;
-  for(let i=start;i<=end;i++){
-    const ua=userAnswers[i]||'';
-    const ca=ansMap[i]||'';
-    if(norm(ua)===norm(ca)) s+=points[i];
-  }
-  return Math.round(s*10)/10;
-}
+document.addEventListener('DOMContentLoaded', initQuiz);

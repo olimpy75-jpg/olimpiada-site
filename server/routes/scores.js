@@ -5,11 +5,12 @@ const router = express.Router();
 
 router.post('/', auth, async (req, res) => {
   try {
-    const { part1, part2, part3, total, answers } = req.body;
+    const { grade, part1, part2, part3, total, answers } = req.body;
 
     const score = new Score({
       user: req.user._id,
       name: req.user.name,
+      grade: grade || 9,
       part1: part1 || 0,
       part2: part2 || 0,
       part3: part3 || 0,
@@ -36,10 +37,12 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/leaderboard', async (req, res) => {
   try {
-    const scores = await Score.find()
+    const grade = req.query.grade;
+    const filter = grade ? { grade: parseInt(grade) } : {};
+    const scores = await Score.find(filter)
       .sort({ total: -1 })
       .limit(10)
-      .select('name total part1 part2 part3 createdAt');
+      .select('name grade total part1 part2 part3 createdAt');
     res.json({ leaderboard: scores });
   } catch (err) {
     res.status(500).json({ error: 'Xatolik: ' + err.message });

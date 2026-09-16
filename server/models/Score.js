@@ -10,6 +10,11 @@ const scoreSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  grade: {
+    type: Number,
+    enum: [9, 11],
+    required: true
+  },
   part1: {
     type: Number,
     default: 0,
