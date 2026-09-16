@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpiada — Axborot Texnologiyalari</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand"><span class="icon">IO</span> Olimpiada</a>
+    <div class="nav-links" id="nav-links"></div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <div class="toc">
+    <h3 id="grade-badge">Olimpiada</h3>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="dot s1"></span> 1-Qism: asoslar (1–10)</div>
+      <div class="toc-item"><span class="dot s2"></span> 2-Qism: dasturlash (11–20)</div>
+      <div class="toc-item"><span class="dot s3"></span> 3-Qism: amaliy (21–30)</div>
+    </div>
+    <div style="margin-top:12px;font-size:0.85rem;color:var(--text-secondary)">
+      Jami ball: <strong id="max-score">50</strong> | 30 savol
+    </div>
+  </div>
+
+  <div id="quiz-container">
+    <div class="empty-state"><div class="icon">&#9203;</div><h3>Yuklanmoqda...</h3></div>
+  </div>
+
+  <p id="quiz-title" style="display:none"></p>
+</div>
+
+<footer>&copy; 2026 Axborot Texnologiyalari Olimpiadasi. O'zbekiston.</footer>
+
+<script src="/js/app.js"></script>
+<script src="/js/quiz-data.js"></script>
+<script src="/js/quiz.js"></script>
+</body>
+</html>
