@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpiada — Axborot Texnologiyalari</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand"><span class="icon">IO</span> Olimpiada</a>
+    <div class="nav-links" id="nav-links"></div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <div class="toc">
+    <h3>Olimpiada tarkibi</h3>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="dot s1"></span> 1-Qism: Logika va CMS (1–10)</div>
+      <div class="toc-item"><span class="dot s2"></span> 2-Qism: Dasturlash (11–20)</div>
+      <div class="toc-item"><span class="dot s3"></span> 3-Qism: Amaliy (21–30)</div>
+    </div>
+  </div>
+
+  <!-- 1-QISM -->
+  <div class="section-header">
+    <span class="section-num s1">1</span>
+    <h2>1-QISM: Logika va CMS platformalar</h2>
+    <span class="pts">0.9 ball / savol</span>
+  </div>
+
+  <div class="question-card" id="q1">
+    <div class="q-header"><span class="q-num s1">1</span><div class="q-text">"Logika" so'zi qaysi tildan olingan va nimani anglatadi?</div></div>
+    <div class="options">
+      <label class="option" data-q="1" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Yunoncha – ma'lumot</label>
+      <label class="option" data-q="1" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Lotincha – mulohaza, fikr</label>
+      <label class="option" data-q="1" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Yunoncha – nutq, aql</label>
+      <label class="option" data-q="1" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Lotincha – mantiq, aql</label>
+    </div>
+    <div class="comment" id="comment-1">To'g'ri javob: <strong>C</strong> — "Logika" so'zi yunoncha "logos" (nutq, aql) dan olingan.</div>
+  </div>
+
+  <div class="question-card" id="q2">
+    <div class="q-header"><span class="q-num s1">2</span><div class="q-text">"<code>&lt;=&gt;</code>" belgisi nimani anglatadi?</div></div>
+    <div class="options">
+      <label class="option" data-q="2" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> A va B bir vaqtda rost va yolg'on</label>
+      <label class="option" data-q="2" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> A va B bir vaqtda rost yoki yolg'on</label>
+      <label class="option" data-q="2" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> A mulohaza B dan katta</label>
+      <label class="option" data-q="2" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Belgida xatolik mavjud</label>
+    </div>
+    <div class="comment" id="comment-2">To'g'ri javob: <strong>B</strong> — "&lt;=&gt;" ekvivalentlik belgisi.</div>
+  </div>
+
+  <div class="question-card" id="q3">
+    <div class="q-header"><span class="q-num s1">3</span><div class="q-text">O'zining imkoniyati va funksiyalari orqali boshqa tizimlarni yo'lga qo'yishga xizmat qiluvchi "o'zak dastur" — … deb ataladi:</div></div>
+    <div class="options">
+      <label class="option" data-q="3" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Dasturiy o'zak</label>
+      <label class="option" data-q="3" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Kontent</label>
+      <label class="option" data-q="3" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Web – sayt</label>
+      <label class="option" data-q="3" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Platforma</label>
+    </div>
+    <div class="comment" id="comment-3">To'g'ri javob: <strong>A</strong> — Dasturiy o'zak (operatsion tizim).</div>
+  </div>
+
+  <div class="question-card" id="q4">
+    <div class="q-header"><span class="q-num s1">4</span><div class="q-text">Internet tarmog'ida ijtimoiy media marketingni yurituvchi shaxs — …</div></div>
+    <div class="options">
+      <label class="option" data-q="4" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Media tarqatuvchi</label>
+      <label class="option" data-q="4" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> SMM mutaxassisi</label>
+      <label class="option" data-q="4" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Youtuber</label>
+      <label class="option" data-q="4" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Blogger</label>
+    </div>
+    <div class="comment" id="comment-4">To'g'ri javob: <strong>B</strong> — SMM mutaxassisi.</div>
+  </div>
+
+  <div class="question-card" id="q5">
+    <div class="q-header"><span class="q-num s1">5</span><div class="q-text">Logotip — bu …</div></div>
+    <div class="options">
+      <label class="option" data-q="5" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Maqsadini ifodalovchi so'z</label>
+      <label class="option" data-q="5" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Maqsadini ifodalovchi tasvir</label>
+      <label class="option" data-q="5" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Mazmunini ochib beruvchi shior</label>
+      <label class="option" data-q="5" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Bitmax ko'rinishida saqlanuvchi tasvir</label>
+    </div>
+    <div class="comment" id="comment-5">To'g'ri javob: <strong>B</strong> — Logotip — vizual tasvir.</div>
+  </div>
+
+  <div class="question-card" id="q6">
+    <div class="q-header"><span class="q-num s1">6</span><div class="q-text">CMS ning kengaytmasi qanday?</div></div>
+    <div class="options">
+      <label class="option" data-q="6" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Content Management System</label>
+      <label class="option" data-q="6" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Content Manager System</label>
+      <label class="option" data-q="6" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Clip Making Secretary</label>
+      <label class="option" data-q="6" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Computer Media System</label>
+    </div>
+    <div class="comment" id="comment-6">To'g'ri javob: <strong>A</strong> — Content Management System.</div>
+  </div>
+
+  <div class="question-card" id="q7">
+    <div class="q-header"><span class="q-num s1">7</span><div class="q-text">CMS platformalarning qanday guruhlari mavjud?</div></div>
+    <div class="options">
+      <label class="option" data-q="7" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Ochiq va yopiq kodli</label>
+      <label class="option" data-q="7" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Tekin va pulli</label>
+      <label class="option" data-q="7" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Ochiq va yarim-ochiq kodli</label>
+      <label class="option" data-q="7" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Faqat ochiq kodli</label>
+    </div>
+    <div class="comment" id="comment-7">To'g'ri javob: <strong>A</strong> — Ochiq va yopiq kodli.</div>
+  </div>
+
+  <div class="question-card" id="q8">
+    <div class="q-header"><span class="q-num s1">8</span><div class="q-text">"Joomla" platformasining domeni qanday?</div></div>
+    <div class="options">
+      <label class="option" data-q="8" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> .uz</label>
+      <label class="option" data-q="8" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> .com</label>
+      <label class="option" data-q="8" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> .org</label>
+      <label class="option" data-q="8" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> .edu</label>
+    </div>
+    <div class="comment" id="comment-8">To'g'ri javob: <strong>C</strong> — joomla.org.</div>
+  </div>
+
+  <div class="question-card" id="q9">
+    <div class="q-header"><span class="q-num s1">9</span><div class="q-text">DEMO versiya bu — …</div></div>
+    <div class="options">
+      <label class="option" data-q="9" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Yagona asl nusxa</label>
+      <label class="option" data-q="9" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Xakerlar buzgan variant</label>
+      <label class="option" data-q="9" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Pulsiz variant</label>
+      <label class="option" data-q="9" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Belgilangan vaqtga ishlaydigan nusxa</label>
+    </div>
+    <div class="comment" id="comment-9">To'g'ri javob: <strong>D</strong> — Sinov nusxasi.</div>
+  </div>
+
+  <div class="question-card" id="q10">
+    <div class="q-header"><span class="q-num s1">10</span><div class="q-text">"Obyekt" so'zi qaysi tildan olingan?</div></div>
+    <div class="options">
+      <label class="option" data-q="10" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Lotin</label>
+      <label class="option" data-q="10" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Yunon</label>
+      <label class="option" data-q="10" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Italyan</label>
+      <label class="option" data-q="10" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Ingliz</label>
+    </div>
+    <div class="comment" id="comment-10">To'g'ri javob: <strong>A</strong> — Lotincha "objectum".</div>
+  </div>
+
+  <!-- 2-QISM -->
+  <div class="section-header">
+    <span class="section-num s2">2</span>
+    <h2>2-QISM: Dasturlash tillari va algoritmlar</h2>
+    <span class="pts">1.5 ball / savol</span>
+  </div>
+
+  <div class="question-card" id="q11">
+    <div class="q-header"><span class="q-num s2">11</span><div class="q-text">Dasturlash tili — bu…</div></div>
+    <div class="options">
+      <label class="option" data-q="11" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Faqat kompyuter tushunadigan til</label>
+      <label class="option" data-q="11" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Web saytlar yoziluvchi til</label>
+      <label class="option" data-q="11" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Dasturchilar orasidagi rasmiy til</label>
+      <label class="option" data-q="11" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Inson va kompyuter o'rtasidagi aloqa tili</label>
+    </div>
+    <div class="comment" id="comment-11">To'g'ri javob: <strong>D</strong> — Inson va kompyuter o'rtasidagi rasmiy aloqa tili.</div>
+  </div>
+
+  <div class="question-card" id="q12">
+    <div class="q-header"><span class="q-num s2">12</span><div class="q-text">IDE ning kengaytmasini ko'rsating</div></div>
+    <div class="options">
+      <label class="option" data-q="12" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Ideal Documentation Environment</label>
+      <label class="option" data-q="12" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Integrated Development Environment</label>
+      <label class="option" data-q="12" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Internet's Domain Extension</label>
+      <label class="option" data-q="12" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Internal Development Environment</label>
+    </div>
+    <div class="comment" id="comment-12">To'g'ri javob: <strong>B</strong> — Integrated Development Environment.</div>
+  </div>
+
+  <div class="question-card" id="q13">
+    <div class="q-header"><span class="q-num s2">13</span><div class="q-text">Qanday translyator turlari mavjud?</div></div>
+    <div class="options">
+      <label class="option" data-q="13" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Assembler va Interpretator</label>
+      <label class="option" data-q="13" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Kompilyator va Assembler</label>
+      <label class="option" data-q="13" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Kompilyator va Interpretator</label>
+      <label class="option" data-q="13" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Assembler va Python</label>
+    </div>
+    <div class="comment" id="comment-13">To'g'ri javob: <strong>C</strong> — Kompilyator va Interpretator.</div>
+  </div>
+
+  <div class="question-card" id="q14">
+    <div class="q-header"><span class="q-num s2">14</span><div class="q-text">Dasturlash tillariga misol keltirilgan qatorni belgilang.</div></div>
+    <div class="options">
+      <label class="option" data-q="14" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> PHP va Scratch</label>
+      <label class="option" data-q="14" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> HTML va Python</label>
+      <label class="option" data-q="14" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Wordpress va C++</label>
+      <label class="option" data-q="14" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> To'g'ri javob mavjud emas</label>
+    </div>
+    <div class="comment" id="comment-14">To'g'ri javob: <strong>A</strong> — PHP va Scratch ikkalasi ham dasturlash tillari.</div>
+  </div>
+
+  <div class="question-card" id="q15">
+    <div class="q-header"><span class="q-num s2">15</span><div class="q-text">PHP nimaga ixtisoslashgan?</div></div>
+    <div class="options">
+      <label class="option" data-q="15" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Dinamik web sahifalar yaratishga</label>
+      <label class="option" data-q="15" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Interfaol web saytlarni yozishga</label>
+      <label class="option" data-q="15" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Sun'iy intellektga</label>
+      <label class="option" data-q="15" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Mobil dasturlar yozishga</label>
+    </div>
+    <div class="comment" id="comment-15">To'g'ri javob: <strong>A</strong> — Dinamik web sahifalar yaratishga.</div>
+  </div>
+
+  <div class="question-card" id="q16">
+    <div class="q-header"><span class="q-num s2">16</span><div class="q-text">Python da <code>print()</code> bu —</div></div>
+    <div class="options">
+      <label class="option" data-q="16" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> O'zgaruvchi</label>
+      <label class="option" data-q="16" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Operator</label>
+      <label class="option" data-q="16" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Chiquvchi ma'lumot</label>
+      <label class="option" data-q="16" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Qo'lda yoziladigan funksiya</label>
+    </div>
+    <div class="comment" id="comment-16">To'g'ri javob: <strong>C</strong> — Chiquvchi ma'lumot funksiyasi.</div>
+  </div>
+
+  <div class="question-card" id="q17">
+    <div class="q-header"><span class="q-num s2">17</span><div class="q-text">Python da "NameError" … anglatadi</div></div>
+    <div class="options">
+      <label class="option" data-q="17" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> So'zni taniy olmaganini</label>
+      <label class="option" data-q="17" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> Interfaol muhitdagi xatolikni</label>
+      <label class="option" data-q="17" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Xotiradagi xatolikni</label>
+      <label class="option" data-q="17" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Mantiqiy xatolikni</label>
+    </div>
+    <div class="comment" id="comment-17">To'g'ri javob: <strong>A</strong> — Nomni taniy olmagan.</div>
+  </div>
+
+  <div class="question-card" id="q18">
+    <div class="q-header"><span class="q-num s2">18</span><div class="q-text">Python da o'zgaruvchi turini … funksiyasi bilan aniqlash mumkin.</div></div>
+    <div class="options">
+      <label class="option" data-q="18" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> <code>type()</code></label>
+      <label class="option" data-q="18" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> <code>name()</code></label>
+      <label class="option" data-q="18" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> <code>value()</code></label>
+      <label class="option" data-q="18" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> <code>print()</code></label>
+    </div>
+    <div class="comment" id="comment-18">To'g'ri javob: <strong>A</strong> — <code>type()</code>.</div>
+  </div>
+
+  <div class="question-card" id="q19">
+    <div class="q-header"><span class="q-num s2">19</span><div class="q-text">Chiziqli algoritm bu —</div></div>
+    <div class="options">
+      <label class="option" data-q="19" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> Bir qator koddan iborat</label>
+      <label class="option" data-q="19" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> O'zgaruvchan ketma-ketlikda</label>
+      <label class="option" data-q="19" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> Istalgan tartibda</label>
+      <label class="option" data-q="19" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> Qat'iy ketma-ketlikda tartib bilan</label>
+    </div>
+    <div class="comment" id="comment-19">To'g'ri javob: <strong>D</strong> — Qat'iy ketma-ketlikda.</div>
+  </div>
+
+  <div class="question-card" id="q20">
+    <div class="q-header"><span class="q-num s2">20</span><div class="q-text">Python da shart operatori … deb ataladi.</div></div>
+    <div class="options">
+      <label class="option" data-q="20" data-val="A" onclick="sel(this)"><span class="option-letter">A</span> IF</label>
+      <label class="option" data-q="20" data-val="B" onclick="sel(this)"><span class="option-letter">B</span> SWICH</label>
+      <label class="option" data-q="20" data-val="C" onclick="sel(this)"><span class="option-letter">C</span> CASE</label>
+      <label class="option" data-q="20" data-val="D" onclick="sel(this)"><span class="option-letter">D</span> IF THIS</label>
+    </div>
+    <div class="comment" id="comment-20">To'g'ri javob: <strong>A</strong> — <code>if</code>.</div>
+  </div>
+
+  <!-- 3-QISM -->
+  <div class="section-header">
+    <span class="section-num s3">3</span>
+    <h2>3-QISM: Amaliy topshiriqlar</h2>
+    <span class="pts">2.6 ball / savol</span>
+  </div>
+
+  <div class="question-card" id="q21">
+    <div class="q-header"><span class="q-num s3">21</span><div class="q-text">Python dasturi natijasini aniqlang.</div></div>
+    <div class="code-block">s = 0
+<span style="color:#c084fc">for</span> i <span style="color:#c084fc">in</span> <span style="color:#67e8f9">range</span>(<span style="color:#fbbf24">1</span>, <span style="color:#fbbf24">11</span>):
+    <span style="color:#c084fc">for</span> j <span style="color:#c084fc">in</span> <span style="color:#67e8f9">range</span>(<span style="color:#fbbf24">1</span>, <span style="color:#fbbf24">11</span>):
+        s += <span style="color:#fbbf24">1</span>
+<span style="color:#67e8f9">print</span>(s)</div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="21" data-answer="100" placeholder="Javobni kiriting..."></div>
+    <div class="comment" id="comment-21">To'g'ri javob: <code>100</code> — 10 × 10 = 100.</div>
+  </div>
+
+  <div class="question-card" id="q22">
+    <div class="q-header"><span class="q-num s3">22</span><div class="q-text">MS Excel: E14 da <code>=B$6</code> formulaning H28 dagi nusxasi?</div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="22" data-answer="=E$6" placeholder="Javobni kiriting..."></div>
+    <div class="comment" id="comment-22">To'g'ri javob: <code>=E$6</code>.</div>
+  </div>
+
+  <div class="question-card" id="q23">
+    <div class="q-header"><span class="q-num s3">23</span><div class="q-text">Python dasturi natijasini aniqlang.</div></div>
+    <div class="code-block"><span style="color:#c084fc">for</span> i <span style="color:#c084fc">in</span> [<span style="color:#fbbf24">1</span>, <span style="color:#fbbf24">2</span>, <span style="color:#fbbf24">3</span>, <span style="color:#fbbf24">4</span>][::<span style="color:#fbbf24">-1</span>]:
+    <span style="color:#67e8f9">print</span>(i, end=<span style="color:#86efac">'-'</span>)</div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="23" data-answer="4-3-2-1-" placeholder="Javobni kiriting..."></div>
+    <div class="comment" id="comment-23">To'g'ri javob: <code>4-3-2-1-</code>.</div>
+  </div>
+
+  <div class="question-card" id="q24">
+    <div class="q-header"><span class="q-num s3">24</span><div class="q-text"><code>((400₈ - 80₁₆) × (100000₂ + 100₄)) ÷ ((200₁₆ × 600₈) × (10₄ + 100₂)) = ?₁₀</code></div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="24" data-answer="0" placeholder="10-lik sanoqda..."></div>
+    <div class="comment" id="comment-24">To'g'ri javob: <code>0</code>.</div>
+  </div>
+
+  <div class="question-card" id="q25">
+    <div class="q-header"><span class="q-num s3">25</span><div class="q-text"><code>for i in range(…, …, step):</code> — nuqtalar o'rniga? Format: <code>start, stop</code></div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="25" data-answer="start, stop" placeholder="start, stop"></div>
+    <div class="comment" id="comment-25">To'g'ri javob: <code>start, stop</code>.</div>
+  </div>
+
+  <div class="question-card" id="q26">
+    <div class="q-header"><span class="q-num s3">26</span><div class="q-text">IDLE da cheksiz siklni to'xtatish komandasi?</div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="26" data-answer="Ctrl+C" placeholder="Javobni kiriting..."></div>
+    <div class="comment" id="comment-26">To'g'ri javob: <code>Ctrl+C</code>.</div>
+  </div>
+
+  <div class="question-card" id="q27">
+    <div class="q-header"><span class="q-num s3">27</span><div class="q-text">Python da funksiya e'lon qiluvchi kalit so'z?</div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="27" data-answer="def" placeholder="Javobni kiriting..."></div>
+    <div class="comment" id="comment-27">To'g'ri javob: <code>def</code>.</div>
+  </div>
+
+  <div class="question-card" id="q28">
+    <div class="q-header"><span class="q-num s3">28</span><div class="q-text">A=rost, B=yolg'on, C=rost, D=yolg'on: <code>(A and B or C and D) and (A or B)</code></div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="28" data-answer="False" placeholder="True yoki False..."></div>
+    <div class="comment" id="comment-28">To'g'ri javob: <code>False</code>.</div>
+  </div>
+
+  <div class="question-card" id="q29">
+    <div class="q-header"><span class="q-num s3">29</span><div class="q-text">GIF ning kengaytmasi qanday?</div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="29" data-answer=".gif" placeholder="Javobni kiriting..."></div>
+    <div class="comment" id="comment-29">To'g'ri javob: <code>.gif</code>.</div>
+  </div>
+
+  <div class="question-card" id="q30">
+    <div class="q-header"><span class="q-num s3">30</span><div class="q-text">"Khan Academy" ning birinchi videosi YouTube ga qachon yuklangan?</div></div>
+    <div class="text-input-area"><input type="text" class="text-answer" data-q="30" data-answer="2006" placeholder="Yilni kiriting..."></div>
+    <div class="comment" id="comment-30">To'g'ri javob: <code>2006</code>.</div>
+  </div>
+
+  <div class="submit-section">
+    <button class="btn btn-primary" id="check-btn" disabled onclick="checkAll()" style="max-width:400px;margin:0 auto">Natijani tekshirish</button>
+  </div>
+
+  <div id="result-section">
+    <h2>Olimpiada natijalari</h2>
+    <p class="subtitle">Barcha savollar baholandi</p>
+    <div class="big-score" id="final-score">0 / 50.0</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="score-detail">
+      <div class="item"><div class="val" id="r-correct" style="color:var(--success)">0</div><div class="lbl">To'g'ri</div></div>
+      <div class="item"><div class="val" id="r-wrong" style="color:var(--danger)">0</div><div class="lbl">Noto'g'ri</div></div>
+      <div class="item"><div class="val" id="r-percent" style="color:var(--primary)">0%</div><div class="lbl">Foiz</div></div>
+    </div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+</div>
+
+<footer>&copy; 2026 Axborot Texnologiyalari Olimpiadasi. O'zbekiston.</footer>
+
+<script src="/js/app.js"></script>
+<script src="/js/quiz.js"></script>
+</body>
+</html>
